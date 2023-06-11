@@ -1,5 +1,5 @@
 # Scan
 
-Scan is `grep` written in Rust.
+`scan` is a mini-`grep` written in Rust.
 
 
