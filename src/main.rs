@@ -1,18 +1,18 @@
 use std::env;
-use std::fs;
+use std::process;
+
+use scan::Config;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let query = &args[1];
-    let file_path = &args[2];
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        println!("Problem parsing args: {err}");
+        process::exit(1);
+    });
 
-    let content = fs::read_to_string(&file_path)
-        .expect("could not read file");
-
-    for line in content.lines() {
-        if line.contains(query) {
-            println!("{}", line);
-        }
+    if let Err(e) = scan::run(config) {
+        println!("Application error! {e}");
+        process::exit(1);
     }
 }
 
