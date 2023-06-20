@@ -63,13 +63,13 @@ mod tests {
 
     #[test]
     fn case_sensitive() {
-        let query = String::from("duct");
+        let query = String::from("Safe");
         let contents = String::from("\
 Rust:
-safe, fast, productive.
+Safe, fast, productive.
 Pick three.");
 
-        assert_eq!(vec!["safe, fast, productive."], scan(&query, &contents, false));
+        assert_eq!(vec!["Safe, fast, productive."], scan(&query, &contents, false));
     }
 
     #[test]
